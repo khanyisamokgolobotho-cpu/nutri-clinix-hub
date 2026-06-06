@@ -107,6 +107,19 @@ const bookingOptions = [
   ['Family Nutrition Consultation', 'Household routines, meals, child nutrition, and habits.'],
 ];
 
+const timeSlots = [
+  '08:00',
+  '09:00',
+  '10:00',
+  '11:00',
+  '12:00',
+  '13:00',
+  '14:00',
+  '15:00',
+  '16:00',
+  '17:00',
+];
+
 const faqs = [
   [
     'Do I need a referral?',
@@ -688,6 +701,7 @@ function BookingModal({ open, onClose, initialService = 'Initial Nutrition Consu
     consultationType: 'In-person',
     location: 'Hatfield',
     date: '',
+    time: '',
   });
   const [submitState, setSubmitState] = useState({ status: 'idle', message: '' });
 
@@ -757,6 +771,17 @@ function BookingModal({ open, onClose, initialService = 'Initial Nutrition Consu
             </select>
           </label>
           <Field label="Preferred Date" type="date" value={form.date} onChange={update('date')} />
+          <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            Preferred Time
+            <select value={form.time} onChange={update('time')} className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700">
+              <option value="">Select a time</option>
+              {timeSlots.map((slot) => (
+                <option key={slot} value={slot}>
+                  {slot}
+                </option>
+              ))}
+            </select>
+          </label>
           <div className="flex flex-col gap-3 border-t border-slate-100 pt-5 sm:col-span-2 sm:flex-row sm:justify-end">
             <button type="button" onClick={onClose} className="focus-ring rounded-md border border-slate-200 px-6 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50">
               Cancel
