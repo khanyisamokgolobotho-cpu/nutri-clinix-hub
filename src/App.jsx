@@ -225,11 +225,19 @@ function Hero() {
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white/95 to-white/90 sm:h-72" />
       <div className="container-max relative grid items-center gap-9 px-4 pb-14 pt-7 sm:gap-12 sm:px-8 sm:pb-16 lg:grid-cols-[1fr_0.82fr] lg:px-12 lg:pb-24">
         <div className="reveal-card">
-          <div className="inline-flex items-center gap-2 rounded-full border border-burgundy-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-burgundy-800 shadow-sm">
-            <Activity size={15} />
-            InBody analysis available
+          <div className="inline-flex max-w-full flex-col gap-2 rounded-2xl border border-burgundy-100 bg-white/90 p-2 shadow-soft backdrop-blur sm:flex-row sm:items-center sm:rounded-full">
+            <div className="inline-flex items-center gap-2 rounded-xl bg-burgundy-700 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white sm:rounded-full">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-50" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
+              </span>
+              InBody Analysis Available
+            </div>
+            <div className="inline-flex items-center gap-2 px-2 py-1 text-xs font-bold uppercase tracking-[0.12em] text-burgundy-800">
+              <ShieldCheck size={15} />
+              Evidence-Based Nutrition Care
+            </div>
           </div>
-          <p className="eyebrow">Evidence-Based Nutrition Care</p>
           <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-normal text-charcoal sm:text-5xl lg:text-[3.7rem]">
             Professional Nutrition & Wellness Care
           </h1>
