@@ -130,6 +130,12 @@ const faqs = [
   ],
 ];
 
+const carePathway = [
+  ['Assess', 'Review health goals, lifestyle, and InBody composition insights.', BarChart3],
+  ['Plan', 'Create practical nutrition steps tailored to clinical or fitness needs.', Stethoscope],
+  ['Support', 'Track progress and adjust the plan as goals evolve.', Target],
+];
+
 function Button({ href, children, variant = 'primary', className = '' }) {
   const base =
     'focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition duration-300 sm:w-auto';
@@ -215,10 +221,14 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden bg-white pt-20 sm:pt-24 lg:pt-28">
-      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white to-white sm:h-72" />
+    <section id="home" className="soft-grid relative overflow-hidden bg-white pt-20 sm:pt-24 lg:pt-28">
+      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white/95 to-white/90 sm:h-72" />
       <div className="container-max relative grid items-center gap-9 px-4 pb-14 pt-7 sm:gap-12 sm:px-8 sm:pb-16 lg:grid-cols-[1fr_0.82fr] lg:px-12 lg:pb-24">
-        <div>
+        <div className="reveal-card">
+          <div className="inline-flex items-center gap-2 rounded-full border border-burgundy-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-burgundy-800 shadow-sm">
+            <Activity size={15} />
+            InBody analysis available
+          </div>
           <p className="eyebrow">Evidence-Based Nutrition Care</p>
           <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-normal text-charcoal sm:text-5xl lg:text-[3.7rem]">
             Professional Nutrition & Wellness Care
@@ -239,7 +249,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="reveal-card relative">
           <div className="absolute -left-5 top-12 hidden rounded-lg bg-white p-4 shadow-premium sm:block">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-md bg-burgundy-50 text-burgundy-700">
@@ -252,7 +262,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-burgundy-100 bg-white p-3 shadow-premium">
+          <div className="rounded-xl border border-burgundy-100 bg-white p-3 shadow-premium ring-8 ring-burgundy-50/70">
             <img src={dietitianImage} alt="Professional nutrition consultation" className="h-auto max-h-[420px] w-full object-contain sm:max-h-[560px]" />
           </div>
 
@@ -269,14 +279,39 @@ function Hero() {
 
 function TrustBar() {
   return (
-    <section className="border-y border-slate-100 bg-mist px-5 py-5 sm:px-8 lg:px-12">
+    <section className="border-y border-slate-100 bg-white px-4 py-5 sm:px-8 lg:px-12">
       <div className="container-max grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {trustItems.map((item) => (
-          <div key={item} className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+          <div key={item} className="rounded-full border border-slate-100 bg-mist px-4 py-3 flex items-center gap-2 text-sm font-semibold text-slate-700 shadow-sm">
             <CheckCircle2 className="shrink-0 text-burgundy-700" size={17} />
             <span>{item}</span>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function CarePathway() {
+  return (
+    <section className="bg-burgundy-900 px-4 py-10 text-white sm:px-8 lg:px-12">
+      <div className="container-max grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-burgundy-100 sm:text-sm">Care Pathway</p>
+          <h2 className="mt-3 text-2xl font-bold sm:text-3xl">A clear process from assessment to progress</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          {carePathway.map(([title, text, Icon], index) => (
+            <div key={title} className="rounded-xl border border-white/10 bg-white/[0.08] p-5 backdrop-blur">
+              <div className="flex items-center justify-between">
+                <Icon className="text-burgundy-100" size={24} />
+                <span className="text-xs font-bold text-burgundy-100">0{index + 1}</span>
+              </div>
+              <p className="mt-4 font-bold">{title}</p>
+              <p className="mt-2 text-sm leading-6 text-burgundy-50">{text}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -423,8 +458,9 @@ function Services() {
           {services.map(([title, text, Icon]) => (
             <article
               key={title}
-              className="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-burgundy-100 hover:shadow-premium"
+              className="group relative overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-burgundy-100 hover:shadow-premium"
             >
+              <div className="absolute inset-x-0 top-0 h-1 bg-burgundy-700 opacity-0 transition group-hover:opacity-100" />
               <div className="flex h-12 w-12 items-center justify-center rounded-md bg-burgundy-50 text-burgundy-700 transition group-hover:bg-burgundy-700 group-hover:text-white">
                 <Icon size={24} />
               </div>
@@ -440,7 +476,7 @@ function Services() {
 
 function InBody() {
   return (
-    <section id="inbody" className="section-pad bg-burgundy-900 text-white">
+    <section id="inbody" className="soft-grid section-pad bg-burgundy-900 text-white">
       <div className="container-max">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
@@ -800,6 +836,7 @@ export default function App() {
       <main>
         <Hero />
         <TrustBar />
+        <CarePathway />
         <About />
         <Dietitian />
         <Services />
