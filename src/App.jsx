@@ -225,17 +225,30 @@ function Hero() {
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white/95 to-white/90 sm:h-72" />
       <div className="container-max relative grid items-center gap-9 px-4 pb-14 pt-4 sm:gap-12 sm:px-8 sm:pb-16 sm:pt-5 lg:grid-cols-[1fr_0.82fr] lg:px-12 lg:pb-24 lg:pt-6">
         <div className="reveal-card">
-          <div className="inline-flex max-w-full flex-col gap-2 rounded-2xl border border-burgundy-100 bg-white/90 p-2 shadow-soft backdrop-blur sm:flex-row sm:items-center sm:rounded-full">
-            <div className="inline-flex items-center gap-2 rounded-xl bg-burgundy-700 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white sm:rounded-full">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-50" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
-              </span>
-              InBody Analysis Available
+          <div className="grid max-w-2xl gap-3 sm:grid-cols-[1.05fr_0.95fr]">
+            <div className="rounded-xl border border-burgundy-100 bg-white p-4 shadow-soft">
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-burgundy-700 text-white">
+                  <Activity size={21} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy-700">Featured Service</p>
+                  <p className="mt-1 font-bold text-charcoal">InBody Composition Analysis</p>
+                  <p className="mt-1 text-sm text-slate-600">Muscle mass, body fat percentage, visceral fat.</p>
+                </div>
+              </div>
             </div>
-            <div className="inline-flex items-center gap-2 px-2 py-1 text-xs font-bold uppercase tracking-[0.12em] text-burgundy-800">
-              <ShieldCheck size={15} />
-              Evidence-Based Nutrition Care
+            <div className="rounded-xl border border-slate-100 bg-white/85 p-4 shadow-sm backdrop-blur">
+              <div className="flex items-start gap-3">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-burgundy-50 text-burgundy-700">
+                  <ShieldCheck size={21} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-burgundy-700">Care Standard</p>
+                  <p className="mt-1 font-bold text-charcoal">Evidence-based dietetic care</p>
+                  <p className="mt-1 text-sm text-slate-600">Professional support for sustainable outcomes.</p>
+                </div>
+              </div>
             </div>
           </div>
           <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight tracking-normal text-charcoal sm:text-5xl lg:text-[3.7rem]">
