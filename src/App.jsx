@@ -151,6 +151,21 @@ function Button({ href, children, variant = 'primary', className = '' }) {
   );
 }
 
+function ActionButton({ children, onClick, variant = 'primary', className = '' }) {
+  const base =
+    'focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition duration-300 sm:w-auto';
+  const styles =
+    variant === 'primary'
+      ? 'bg-burgundy-700 text-white shadow-soft hover:-translate-y-0.5 hover:bg-burgundy-800'
+      : 'border border-burgundy-200 bg-white text-burgundy-800 hover:border-burgundy-700 hover:bg-burgundy-50';
+
+  return (
+    <button type="button" onClick={onClick} className={`${base} ${styles} ${className}`}>
+      {children}
+    </button>
+  );
+}
+
 function SectionHeader({ eyebrow, title, text, light = false }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
@@ -163,7 +178,7 @@ function SectionHeader({ eyebrow, title, text, light = false }) {
   );
 }
 
-function Header() {
+function Header({ onBook }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -186,7 +201,7 @@ function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="#booking">Book Consultation</Button>
+          <ActionButton onClick={() => onBook()}>Book Consultation</ActionButton>
         </div>
 
         <button
@@ -219,7 +234,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onBook }) {
   return (
     <section id="home" className="soft-grid relative overflow-hidden bg-white pt-16 sm:pt-[72px] lg:pt-20">
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white/95 to-white/90 sm:h-72" />
@@ -234,10 +249,10 @@ function Hero() {
             nutrition, and clinical nutrition support tailored to each client's goals.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-            <Button href="#booking">
+            <ActionButton onClick={() => onBook('Initial Nutrition Consultation')}>
               <CalendarCheck size={18} />
               Book Consultation
-            </Button>
+            </ActionButton>
             <Button href={whatsappLink} variant="secondary">
               <MessageCircle size={18} />
               WhatsApp Us
@@ -382,7 +397,7 @@ function About() {
   );
 }
 
-function Dietitian() {
+function Dietitian({ onBook }) {
   return (
     <section id="dietitian" className="soft-grid section-pad bg-burgundy-900 text-white">
       <div className="container-max grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -429,7 +444,7 @@ function Dietitian() {
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="#booking">Book Appointment</Button>
+            <ActionButton onClick={() => onBook('Initial Nutrition Consultation')}>Book Appointment</ActionButton>
             <Button href={whatsappLink} variant="secondary">
               <MessageCircle size={18} />
               WhatsApp Us
@@ -470,7 +485,7 @@ function Services() {
   );
 }
 
-function InBody() {
+function InBody({ onBook }) {
   return (
     <section id="inbody" className="soft-grid section-pad bg-burgundy-900 text-white">
       <div className="container-max">
@@ -491,13 +506,14 @@ function InBody() {
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={whatsappLink}
+              <button
+                type="button"
+                onClick={() => onBook('InBody Assessment')}
                 className="focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-burgundy-900 shadow-soft transition hover:-translate-y-0.5 hover:bg-burgundy-50 sm:w-auto"
               >
                 <CalendarCheck size={18} />
                 Book InBody Assessment
-              </a>
+              </button>
               <a
                 href={whatsappLink}
                 className="focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/25 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08] sm:w-auto"
@@ -597,7 +613,7 @@ function Testimonials() {
   );
 }
 
-function Booking() {
+function Booking({ onBook }) {
   return (
     <section id="booking" className="section-pad bg-white">
       <div className="container-max">
@@ -617,13 +633,14 @@ function Booking() {
                 <p className="mt-2 text-sm leading-6 text-burgundy-50">
                   Share the service you are interested in and the team will guide you through the next steps.
                 </p>
-                <a
-                  href={whatsappLink}
+                <button
+                  type="button"
+                  onClick={() => onBook()}
                   className="focus-ring mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-burgundy-900 transition hover:bg-burgundy-50 sm:w-auto"
                 >
                   <MessageCircle size={18} />
-                  Book On WhatsApp
-                </a>
+                  Start Booking
+                </button>
               </div>
             </div>
 
@@ -643,13 +660,14 @@ function Booking() {
                         <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
                       </div>
                     </div>
-                    <a
-                      href={whatsappLink}
+                    <button
+                      type="button"
+                      onClick={() => onBook(title)}
                       className="focus-ring mt-4 inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-md bg-burgundy-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-burgundy-800 sm:mt-0 sm:w-auto sm:self-center sm:bg-white sm:py-2 sm:text-burgundy-800 sm:ring-1 sm:ring-burgundy-200 sm:hover:bg-burgundy-50"
                     >
                       <CalendarCheck size={16} />
                       Book
-                    </a>
+                    </button>
                   </article>
                 ))}
               </div>
@@ -658,6 +676,112 @@ function Booking() {
         </div>
       </div>
     </section>
+  );
+}
+
+function BookingModal({ open, onClose, initialService = 'Initial Nutrition Consultation' }) {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: initialService,
+    consultationType: 'In-person',
+    location: 'Hatfield',
+    date: '',
+  });
+  const [submitState, setSubmitState] = useState({ status: 'idle', message: '' });
+
+  if (!open) return null;
+
+  const update = (field) => (event) => {
+    setForm((current) => ({ ...current, [field]: event.target.value }));
+  };
+
+  const submitBooking = (event) => {
+    event.preventDefault();
+    setSubmitState({
+      status: 'success',
+      message: 'Mock booking request submitted. Nutri-Clinix Hub would contact the client to confirm availability.',
+    });
+    window.setTimeout(() => {
+      onClose();
+    }, 1600);
+  };
+
+  return (
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-charcoal/70 px-4 py-6 backdrop-blur-sm" role="dialog" aria-modal="true">
+      <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-white shadow-premium">
+        <div className="flex items-start justify-between gap-4 bg-burgundy-900 p-5 text-white sm:p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-burgundy-100">Booking Request</p>
+            <h2 className="mt-2 text-2xl font-bold">Book A Consultation</h2>
+            <p className="mt-2 text-sm leading-6 text-burgundy-50">
+              Complete the details below and Nutri-Clinix Hub will confirm availability.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="focus-ring flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/20 text-white hover:bg-white/10"
+            aria-label="Close booking form"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <form onSubmit={submitBooking} className="grid gap-5 p-5 sm:grid-cols-2 sm:p-6">
+          <Field label="Full Name" value={form.name} onChange={update('name')} required />
+          <Field label="Email Address" type="email" value={form.email} onChange={update('email')} required />
+          <Field label="Phone Number" type="tel" value={form.phone} onChange={update('phone')} required />
+          <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            Service
+            <select value={form.service} onChange={update('service')} className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700">
+              {bookingOptions.map(([title]) => (
+                <option key={title}>{title}</option>
+              ))}
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            Consultation Type
+            <select value={form.consultationType} onChange={update('consultationType')} className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700">
+              <option>In-person</option>
+              <option>Online</option>
+            </select>
+          </label>
+          <label className="grid gap-2 text-sm font-semibold text-slate-700">
+            Preferred Location
+            <select value={form.location} onChange={update('location')} className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700">
+              <option>Hatfield</option>
+              <option>Doornpoort</option>
+              <option>Online</option>
+            </select>
+          </label>
+          <Field label="Preferred Date" type="date" value={form.date} onChange={update('date')} />
+          <div className="flex flex-col gap-3 border-t border-slate-100 pt-5 sm:col-span-2 sm:flex-row sm:justify-end">
+            <button type="button" onClick={onClose} className="focus-ring rounded-md border border-slate-200 px-6 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={submitState.status === 'success'}
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-burgundy-700 px-6 py-3 text-sm font-bold text-white hover:bg-burgundy-800 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              <CalendarCheck size={18} />
+              Book
+            </button>
+          </div>
+          {submitState.message && (
+            <div
+              className={`rounded-lg p-4 text-sm font-semibold sm:col-span-2 ${
+                submitState.status === 'success' ? 'bg-emerald-50 text-emerald-800' : 'bg-burgundy-50 text-burgundy-800'
+              }`}
+            >
+              {submitState.message}
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
   );
 }
 
@@ -758,11 +882,18 @@ function ContactLine({ icon: Icon, label, value, href }) {
   );
 }
 
-function Field({ label, type = 'text' }) {
+function Field({ label, type = 'text', value, onChange, required = false, placeholder = '' }) {
   return (
     <label className="grid gap-2 text-sm font-semibold text-slate-700">
       {label}
-      <input type={type} className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700" />
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder}
+        className="focus-ring rounded-md border border-slate-200 bg-white px-4 py-3 text-slate-700"
+      />
     </label>
   );
 }
@@ -826,25 +957,35 @@ function FloatingWhatsApp() {
 }
 
 export default function App() {
+  const [bookingModal, setBookingModal] = useState({ open: false, service: 'Initial Nutrition Consultation' });
+  const openBooking = (service = 'Initial Nutrition Consultation') => setBookingModal({ open: true, service });
+  const closeBooking = () => setBookingModal((current) => ({ ...current, open: false }));
+
   return (
     <>
-      <Header />
+      <Header onBook={openBooking} />
       <main>
-        <Hero />
+        <Hero onBook={openBooking} />
         <TrustBar />
         <CarePathway />
         <About />
-        <Dietitian />
+        <Dietitian onBook={openBooking} />
         <Services />
-        <InBody />
+        <InBody onBook={openBooking} />
         <Conditions />
         <Testimonials />
-        <Booking />
+        <Booking onBook={openBooking} />
         <FAQ />
         <Contact />
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <BookingModal
+        key={bookingModal.service}
+        open={bookingModal.open}
+        onClose={closeBooking}
+        initialService={bookingModal.service}
+      />
     </>
   );
 }
