@@ -221,9 +221,9 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="soft-grid relative overflow-hidden bg-white pt-20 sm:pt-24 lg:pt-28">
+    <section id="home" className="soft-grid relative overflow-hidden bg-white pt-16 sm:pt-[72px] lg:pt-20">
       <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-burgundy-50 via-white/95 to-white/90 sm:h-72" />
-      <div className="container-max relative grid items-center gap-9 px-4 pb-14 pt-7 sm:gap-12 sm:px-8 sm:pb-16 lg:grid-cols-[1fr_0.82fr] lg:px-12 lg:pb-24">
+      <div className="container-max relative grid items-center gap-9 px-4 pb-14 pt-4 sm:gap-12 sm:px-8 sm:pb-16 sm:pt-5 lg:grid-cols-[1fr_0.82fr] lg:px-12 lg:pb-24 lg:pt-6">
         <div className="reveal-card">
           <div className="inline-flex max-w-full flex-col gap-2 rounded-2xl border border-burgundy-100 bg-white/90 p-2 shadow-soft backdrop-blur sm:flex-row sm:items-center sm:rounded-full">
             <div className="inline-flex items-center gap-2 rounded-xl bg-burgundy-700 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white sm:rounded-full">
