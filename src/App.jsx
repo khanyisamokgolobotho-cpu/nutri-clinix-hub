@@ -25,6 +25,7 @@ import navbarLogo from '../navbarlogo.png';
 import dietitianImage from '../Dietitian.jpeg';
 import inbodyResultsImage from '../inbody-results.jpeg';
 import inbodyCompositionImage from '../inbody-composition.jpeg';
+import medicalAidsImage from '../medical-aids.jpeg';
 
 const phoneDisplay = '081 027 2588';
 const whatsappNumber = '27810272588';
@@ -335,6 +336,40 @@ function CarePathway() {
               <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MedicalAids() {
+  const providers = ['Bestmed', 'GEMS', 'Discovery Health', 'Sasolmed', 'Polmed', 'LA Health', 'Remedi', 'Medihelp', 'KeyHealth', 'Sizwe Hosmed', 'Medshield', 'Bonitas'];
+
+  return (
+    <section className="section-pad bg-mist">
+      <div className="container-max grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+        <div>
+          <p className="eyebrow">Medical Aids</p>
+          <h2 className="mt-3 text-2xl font-bold text-charcoal sm:text-4xl">Medical aid support for nutrition care</h2>
+          <p className="mt-5 leading-8 text-slate-600">
+            Nutri-Clinix Hub accepts most major medical aids. Clients are encouraged to confirm benefits and available
+            cover with their medical scheme before the consultation.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {providers.map((provider) => (
+              <span key={provider} className="rounded-full border border-burgundy-100 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
+                {provider}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-100 bg-white p-3 shadow-premium">
+          <img
+            src={medicalAidsImage}
+            alt="Medical aids accepted by Nutri-Clinix Hub"
+            className="h-auto w-full rounded-xl object-contain"
+          />
         </div>
       </div>
     </section>
@@ -996,6 +1031,7 @@ export default function App() {
         <About />
         <Dietitian onBook={openBooking} />
         <Services />
+        <MedicalAids />
         <InBody onBook={openBooking} />
         <Conditions />
         <Testimonials />
